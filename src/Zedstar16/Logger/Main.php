@@ -24,7 +24,7 @@ class Main extends PluginBase implements Listener
 
     public function initialiseFiles(): void
     {
-        $defaulturl = "https://discordapp.com/api/webhooks/643170268029779968/pfx1fKj1zUR4xX7D9CPlUcBvDkkZ3uCGaOWPQU6nTVLmC4Kdhi8weJqGDMO7R_b5w_xm";
+        $defaulturl = "https://discordapp.com/api/webhooks/urwebhookurl";
         $file = $this->getDataFolder() . "config.yml";
         if (!file_exists($file)) {
             yaml_emit_file($file, ["url" => $defaulturl]);
