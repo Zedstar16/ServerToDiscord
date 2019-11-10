@@ -24,7 +24,7 @@ class Main extends PluginBase implements Listener
 
     public function initialiseFiles(): void
     {
-        $defaulturl = "http://wvehook.com";
+        $defaulturl = "https://discordapp.com/api/webhooks/643170268029779968/pfx1fKj1zUR4xX7D9CPlUcBvDkkZ3uCGaOWPQU6nTVLmC4Kdhi8weJqGDMO7R_b5w_xm";
         $file = $this->getDataFolder() . "config.yml";
         if (!file_exists($file)) {
             yaml_emit_file($file, ["url" => $defaulturl]);
@@ -41,8 +41,9 @@ class Main extends PluginBase implements Listener
     public function onChat(PlayerChatEvent $event)
     {
         $name = $event->getPlayer()->getName();
-        $msg = str_replace(["@here", "@everyone"], "", $event->getMessage());
-        $data = $event->isCancelled() ? "```MutedUser: $name > $msg```" : "⭢ `$name` > $msg";
+        $msg = str_replace(["@here", "@everyone", "*", "`", "_", ">", "~"], "", $event->getMessage());
+
+        $data = $event->isCancelled() ? "```MutedUser: $name > $msg```" : "⭢ **$name** > $msg";
         $this->getServer()->getAsyncPool()->submitTask(new AsyncDispatch($this->url, $data));
     }
 
