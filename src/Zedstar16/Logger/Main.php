@@ -42,7 +42,7 @@ class Main extends PluginBase implements Listener
     {
         $name = $event->getPlayer()->getName();
         $msg = str_replace(["@here", "@everyone"], "", $event->getMessage());
-        $data = $event->isCancelled() ? "```MutedUser: $name > $msg```" : "⭢ $name > $msg";
+        $data = $event->isCancelled() ? "```MutedUser: $name > $msg```" : "⭢ `$name` > $msg";
         $this->getServer()->getAsyncPool()->submitTask(new AsyncDispatch($this->url, $data));
     }
 
