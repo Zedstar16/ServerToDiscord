@@ -41,9 +41,10 @@ class Main extends PluginBase implements Listener
     public function onChat(PlayerChatEvent $event)
     {
         $name = $event->getPlayer()->getName();
+        //remove annoying things players can put in their messages
         $msg = str_replace(["@here", "@everyone", "*", "`", "_", ">", "~"], "", $event->getMessage());
 
-        $data = $event->isCancelled() ? "```MutedUser: $name > $msg```" : "⭢ **$name** > $msg";
+        $data = $event->isCancelled() ? "```Unsent msg: $name > $msg```" : "⭢ **$name** > $msg";
         $this->getServer()->getAsyncPool()->submitTask(new AsyncDispatch($this->url, $data));
     }
 
